@@ -35,9 +35,9 @@ export class LighterMessageHandler {
 
     // 处理心跳
     private handlePingPong(message: any): void {
-        logger.info("Received ping.");
+        logger.info("Received PING.");
         this.ws.send(JSON.stringify({ type: "pong" }));
-        logger.info("Sent pong.");
+        logger.info("Sent PONG.");
     }
 
     // 处理订单价格更新
