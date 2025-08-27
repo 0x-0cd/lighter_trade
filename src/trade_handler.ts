@@ -83,16 +83,16 @@ export class TradeHandler {
                     const askPrice = Math.round(ask.price * askPriceRatio);
                     const minAmount = Math.min(bid.size, ask.size);
                     // TODO 测试模式下先用固定amount
-                    const amount = 500;
+                    const amount = 12;
                     if (amount > 0) {
-                        const nonce = 10000 + Math.floor(Math.random() * 100000);
+                        const nonce = 10000 + Math.floor(Math.random() * 30000);
                         const askNonce = nonce + 648;
                         // 先下最优市价买单
                         this.sendTx(marketId!, amount, -1, false, 1, 0, nonce);
                         // 50ms内下限价卖单
                         setTimeout(() => {
                             this.sendTx(marketId!, amount, askPrice, true, 1, 0, askNonce);
-                        }, 30);
+                        }, 50);
                         // TODO 进入下单后流程
                     }
                 }
