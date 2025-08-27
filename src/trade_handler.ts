@@ -43,6 +43,8 @@ export class TradeHandler {
         const bidAmountRatio = Math.pow(10, amountDecimal!);
         const askAmountRatio = Math.pow(10, amountDecimal!);
 
+        const tradeCap = Number(process.env.trade_cap);
+
         this.ws.send(`{"type": "subscribe","channel": "order_book/${marketId}"}`);
         logger.info(`Subscribe to ${symbol} order book, start trading in 5s.`);
 
@@ -81,11 +83,10 @@ export class TradeHandler {
                     const bidPrice = Math.round(bid.price * bidPriceRatio);
                     // 先下一个更好的限价单减少磨损
                     const askPrice = Math.round(ask.price * askPriceRatio);
-                    const minAmount = Math.min(bid.size, ask.size);
-                    // TODO 测试模式下先用固定amount
-                    const amount = 12;
+                    const capAmount = (tradeCap / bid.price) * bidAmountRatio;
+                    const amount = Math.floor(capAmount);
                     if (amount > 0) {
-                        const nonce = 10000 + Math.floor(Math.random() * 30000);
+                        const nonce = 20000 + Math.floor(Math.random() * 20000);
                         const askNonce = nonce + 648;
                         // 先下最优市价买单
                         this.sendTx(marketId!, amount, -1, false, 1, 0, nonce);
