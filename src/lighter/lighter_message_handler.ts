@@ -30,6 +30,8 @@ export class LighterMessageHandler {
             this.handlePingPong(message);
         } else if (message.type === "update/order_book") {
             this.handleOrderBookUpdate(message);
+        } else if (message.type === "update/account_orders") {
+            this.handleAccountTransactions(message);
         }
     }
 
@@ -46,6 +48,7 @@ export class LighterMessageHandler {
     }
 
     private handleAccountTransactions(message: any): void {
-        // TODO 处理账户交易监控
+        // TODO 真实的订单成交处理
+        logger.debug(JSON.stringify(message));
     }
 }
