@@ -19,6 +19,6 @@ bun install
 运行:
 
 ```bash
-bun run index.ts
+bun run src/index.ts
 ```
 
