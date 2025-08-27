@@ -1,15 +1,24 @@
 # lighter_trade
 
-To install dependencies:
+项目环境
+
+[Bun](https://bun.com)
+
+> bun v1.2.20
+
+修改配置文件:
+
+> 复制`.env.example`为`.env`并配置
+
+安装依赖:
 
 ```bash
 bun install
 ```
 
-To run:
+运行:
 
 ```bash
 bun run index.ts
 ```
 
-This project was created using `bun init` in bun v1.2.19. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
